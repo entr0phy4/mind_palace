@@ -12,6 +12,7 @@ import {
 } from 'react'
 import Highlighter from 'react-highlight-words'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { navigation } from '@/navigation'
 import {
   type AutocompleteApi,
   type AutocompleteCollection,
@@ -21,7 +22,6 @@ import {
 import { Dialog, DialogPanel, DialogBackdrop } from '@headlessui/react'
 import clsx from 'clsx'
 
-import { navigation } from '@/components/Navigation'
 import { type Result } from '@/mdx/search.mjs'
 
 type EmptyObject = Record<string, never>
