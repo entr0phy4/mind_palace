@@ -1,0 +1,67 @@
+
+import { HeroPattern } from '@/components/HeroPattern'
+import { Heading } from '@/components/Heading'
+import { CodeGroup } from '@/components/Code'
+
+export const metadata = {
+  title: '',
+  description: '',
+}
+
+export const sections = [
+  { title: 'Binary Search', id: 'binary' },
+]
+
+<HeroPattern />
+
+# Searches
+
+## Binary search {{ tag: "O(log n)" }}
+
+<Note>
+    Binary search only works when your list is in sorted order. For example the names in a phone book are sorted in alphabetical order, so you can use binary search to look for a name.
+</Note>
+
+The `binary search` takes a sorted array and an item. If item is in the array, the function returns its position.
+
+
+```bash {{ title: 'Python3', language: 'python' }}
+import argparse
+
+def list_of_numbers(arg):
+    return list(map(int, arg.split(',')))
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-l", "--list", type=list_of_numbers, required=True, help="Array of numbers")
+parser.add_argument("-t", "--target", type=int, required=True, help="Target number")
+args = parser.parse_args()
+
+def binary_search(list, item):
+    low = 0
+    high = len(list) - 1
+
+    while low <= high:
+        mid = (low + high) // 2
+        guess = list[mid]
+
+        if guess == item:
+            return mid
+
+        if guess > item:
+            high = mid - 1
+
+        else:
+            low = mid + 1
+
+    return None
+
+if __name__ == '__main__':
+    print(binary_search(args.list, args.target))
+```
+
+this is a simply python command-line tool that takes a list of numbers and a target number and returns the index of the target number in the list using binary search.
+
+```bash {{ title: 'Example', language: 'python' }}
+python binary_search.py -l 1,2,3,4,5,6 -t 6
+# Return: 5
+```
