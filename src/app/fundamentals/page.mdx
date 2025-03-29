@@ -1,6 +1,5 @@
 import { HeroPattern } from '@/components/HeroPattern'
 import { Heading } from '@/components/Heading'
-import { Code } from '@/components/Code'
 
 export const metadata = {
   title: '',
@@ -14,15 +13,25 @@ export const sections = [
 
 <HeroPattern />
 
-# Searches
+# Fundamentals
 
-## Big O Notation
+## Big O Notation {{ id: 'big-o-notation' }}
+
+Big O is special notation that tells you how fas an algorithm is. It tells you how fast the algorithm grows. This lets you compare the number of operations. {{ className: 'lead' }}
+
+What's the running time in Big O notation? It's O(log n). In general, Big O notation is written as O(f(n)), where f(n) is the function that describes the running time or number of operations.
 
 <Note>
 It's called Big O notation because you put a "Big O" in front of the number of operations (sounds like a joke, but it's true!)
 </Note>
 
-It tells you how fast the algorithm grows. Big O notation lets you compare the number of operations.  {{ className: 'lead' }}
+### Some common Big O run times
+
+- `O(n)` - Linear time, E.g Simple/Linear search
+- `O(log n)` - Logarithmic time, E.g. Binary search
+- `O(n * log n)` - A fast sorting algorithm: Example: Quick sort
+- `O(n^2)` - A slow sorting algorithm, E.g selection sort
+- `O(n!)` - A really slow algorithm, E.g. Travelling Salesman
 
 ## Logarithms
 
