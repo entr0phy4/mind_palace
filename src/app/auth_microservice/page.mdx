@@ -1,0 +1,64 @@
+import { HeroPattern } from '@/components/HeroPattern'
+import { Heading } from '@/components/Heading'
+
+export const metadata = {
+  title: '',
+  description: '',
+}
+
+export const sections = [
+  { title: 'Installation', id: 'installation' },
+]
+
+<HeroPattern />
+
+# Authentication & authorization microservice
+
+<p align="center">
+  Authentication and authorization microservice built with NestJS
+</p>
+
+## Description
+
+The Authentication Microservice is a robust and scalable solution for managing user authentication and authorization in modern applications. Built with NestJS, it leverages the power of TypeScript, SWC, and Docker to deliver high performance and ease of deployment. This microservice is designed to integrate seamlessly into a microservices architecture, providing secure JWT-based authentication and role-based access control for protected resources. {{ className: 'lead'}}
+
+## Features
+
+- **Authentication**: Secure user authentication using JWT.
+- **Authorization**: Role-based access control for protected routes.
+- **Scalability**: Built with microservice architecture for scalability.
+- **Performance**: Optimized with SWC for fast builds and execution.
+- **Containerization**: Fully Dockerized for easy deployment.
+
+## Installation {{ id: 'installation' }}
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/sftCommunity/auth-microservice.git
+cd auth-microservice
+```
+
+2. Install dependencies:
+
+```bash
+pnpm install
+```
+
+3. Set up environment variables:
+
+- Copy `.env.template` to `.env` and configure the required variables.
+
+4. Run the application:
+
+```bash
+pnpm run start:dev
+```
+
+## Docker
+
+Build and run the Docker container:
+
+```bash
+docker compose up --build
+```
