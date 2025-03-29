@@ -8,6 +8,17 @@ export interface NavGroup {
 
 export const navigation: Array<NavGroup> = [
   {
+    title: '',
+    links: [{ title: 'Home', href: '/' }],
+  },
+  {
+    title: 'Data structures',
+    links: [
+      { title: 'How memory works', href: '/how-memory-works' },
+      { title: 'Arrays and Linked lists', href: '/arrays-and-linked-lists' },
+    ],
+  },
+  {
     title: 'Algorithms',
     links: [
       { title: 'Fundamentals', href: '/fundamentals' },
@@ -15,6 +26,12 @@ export const navigation: Array<NavGroup> = [
       { title: 'Sorting', href: '/sorting' },
 
       { title: 'Problems', href: '/problems' },
+    ],
+  },
+  {
+    title: 'Projects',
+    links: [
+      { title: 'Authentication microservice', href: '/auth_microservice' },
     ],
   },
 ]
