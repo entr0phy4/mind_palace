@@ -15,13 +15,60 @@ export const sections = [
 
 # Array and Linked lists
 
+Sometimes you need to store a list of elements in memory. There are two common ways to do this: arrays and linked lists. Should you use an array, or a linked list? {{ className: 'lead' }}
+
+---
+
 ## Array {{ id: 'arrays' }}
+
+Using an array means all your items are stored contiguosly in memory (right next to each other).
+
+### Run times for common operations
+- <Heading level={4} tag='O(1)' label='Reading'></Heading>
+- <Heading level={4} tag='O(n)' label='Insertion'></Heading>
+- <Heading level={4} tag='O(n)' label='Deletion'></Heading>
+
+Arrays provide random access.
+
+### Pros:
+- You know the address for every item in your array.
+- Arrays are great if you want to read random elements.
+
+### Cons:
+- You may not need the extras slots that you asked for, and the that memory will be wasted. You aren't using it, but no one else can use it either.
+- You may add more than 10 items yo your task list and have to move anyway.
+
+---
+
+## Linked lists {{ id: 'linked-lists' }}
+
+With linked lists, your items can be anywhere in memory. Each item stores the address of the next sitem in the list. A bunch of random memory addresses are linked together. Adding an item to a linked list is easy: you stick it anywhere in memory and store the address with the previous item.
+
+### Run times for common operations
+- <Heading level={4} tag='O(n)' label='Reading'></Heading>
+- <Heading level={4} tag='O(1)' label='Insertion'></Heading>
+- <Heading level={4} tag='O(1)' label='Deletion'></Heading>
+
+
+Linked lists have a evident problem. Suppose you want to read the last item in a linked list, You can't just read it, because you don't know what address it's at. Instead, you have to go to item #1 to get the address for item #2, then go to item #2 to get the address for item #3, and so on, until you reach the last item.
+
+Linked list only do sequential access.
+
+### Pros:
+- Your items can be anywhere in memory.
+- Adding an item to linked list is easy.
+- If there's space in memory, you have space for your linked list.
+- Linked lists are great if you're going to read all the items on at a time.
+
+### Cons:
+- You never have to move your items.
+- If you're going to keep jumping around, linked lists are terrible.
+
+---
 
 ### Terminology
 
 The elements in an array are numbered. This nubmering starts from 0, not 1.
 The position of an element is called its `index`. So instead of saying "the first element of the array", we say "the element at `index 0`".
 
-## Linked lists {{ id: 'linked-lists' }}
-
-With linked lists, your items can be anywhere in memory. Each item stores the address of the next sitem in the list. A bunch of random memory addresses are linked together. Adding an item to a linked list is easy: you stick it anywhere in memory and store the address with the previous item.
+---
