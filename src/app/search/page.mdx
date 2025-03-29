@@ -9,14 +9,17 @@ export const metadata = {
 }
 
 export const sections = [
-  { title: 'Binary Search', id: 'binary' },
+  { title: 'Linear', id: 'linear' },
+  { title: 'Binary', id: 'binary' },
 ]
 
 <HeroPattern />
 
-# Searches
+## Linear search {{ id: 'linear', tag: 'O(n)', label: 'complexity' }}
 
-## Binary search {{ tag: "O(log n)" }}
+linear search description
+
+## Binary search {{ id: 'binary', tag: 'O(log n)', label: 'complexity' }}
 
 <Note>
     Binary search only works when your list is in sorted order. For example the names in a phone book are sorted in alphabetical order, so you can use binary search to look for a name.
