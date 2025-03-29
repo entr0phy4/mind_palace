@@ -11,7 +11,7 @@ export function Dotfiles() {
         Dotfiles
       </Heading>
 
-      <p className="mt-4 flex items-center gap-1 text-zinc-600 dark:text-zinc-400">
+      <p className="mt-4 flex items-center gap-3 text-zinc-600 dark:text-zinc-400">
         <SocialLink
           href="https://github.com/entr0phy4/.dotfiles"
           icon={GitHubIcon}

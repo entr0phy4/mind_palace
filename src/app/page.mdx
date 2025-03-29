@@ -1,6 +1,8 @@
 import { Projects } from '@/components/Projects'
 import { Dotfiles } from '@/components/Dotfiles'
 import { HeroPattern } from '@/components/HeroPattern'
+import { SocialLink } from '@/components/SocialLink'
+import { GitHubIcon } from '@/components/icons/GithubIcon'
 
 export const metadata = {
   title: 'David\'s mind palace',
@@ -14,15 +16,17 @@ export const sections = [
 
 <HeroPattern />
 
+
+<div className="not-prose mt-6 mb-16 flex gap-3">
+  <Button href="https://github.com/entr0phy4" arrow="right">
+    <>entr0phy4</>
+  </Button>
+</div>
+
 # Mind is a maze of twisty little passages, all alike.
 
 Here you'll find everything you need to know about my mind API. You can find my projects, writeups, resources I've created, my learning, in short, a window into my mind. {{ className: 'lead' }}
 
-<div className="not-prose mt-6 mb-16 flex gap-3">
-  <Button href="/how-memory-works" arrow="right">
-    <>How memory works</>
-  </Button>
-</div>
 
 <Dotfiles />
 
