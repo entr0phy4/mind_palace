@@ -1,5 +1,7 @@
 # Mind palace
 
+![Changelog CI Status](https://github.com/entr0phy4/mind_palace/workflows/Changelog%20CI/badge.svg)
+
 ## Getting started
 
 To get started, first install the npm dependencies:
