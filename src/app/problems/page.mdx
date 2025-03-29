@@ -1,0 +1,28 @@
+
+import { HeroPattern } from '@/components/HeroPattern'
+import { Heading } from '@/components/Heading'
+
+export const metadata = {
+  title: '',
+  description: '',
+}
+
+export const sections = [
+  { title: 'The traveling salesperson', id: 'the-traveling-salesperson' },
+]
+
+<HeroPattern />
+
+# Algorithms problems {{ className: 'pb-15' }}
+
+---
+
+## The traveling salesperson {{ id: 'the-traveling-salesperson', tag: 'O(n!)', label: 'complexity'}}
+
+A traveling salesperson has to visit five cities. The salesperson can start and end at any city. The salesperson wants to find the shortest path that visits each city exactly once and returns to the starting city. The salesperson can travel between cities in any order. {{ className: 'lead' }}
+
+The salespersons adds up the total distance and then picks the path with the lowest distance. There are 120 permutations with 5 cities, so it will take 120 operations to solve the problem for 5 cities, For 6 cities, it will take 720 operations. For 7 cities, it will take 5040 operations. The number of operations grows very quickly.
+
+In general, for `n` items, it will take `n!` operations to compute the result. So this is `O(n!)` time or <i>factorial time</i>.
+
+---
