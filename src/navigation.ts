@@ -12,10 +12,21 @@ export const navigation: Array<NavGroup> = [
     links: [{ title: 'Home', href: '/' }],
   },
   {
+    title: 'Environment',
+    links: [{ title: 'Dotfiles', href: '/dotfiles' }],
+  },
+  {
     title: 'Data structures',
     links: [
       { title: 'How memory works', href: '/how-memory-works' },
       { title: 'Arrays and Linked lists', href: '/arrays-and-linked-lists' },
+    ],
+  },
+  {
+    title: 'Hacking',
+    links: [
+      { title: 'Scripts', href: '/scripts' },
+      { title: 'Tools', href: '/tools' },
     ],
   },
   {
