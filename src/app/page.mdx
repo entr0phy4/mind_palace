@@ -1,43 +1,29 @@
-import { Guides } from '@/components/Guides'
-import { Resources } from '@/components/Resources'
+import { Projects } from '@/components/Projects'
+import { Algorithms } from '@/components/Algorithms'
 import { HeroPattern } from '@/components/HeroPattern'
 
 export const metadata = {
-  title: 'API Documentation',
-  description:
-    'Learn everything there is to know about the Protocol API and integrate Protocol into your product.',
+  title: 'David\'s mind palace',
+  description: 'A window into my mind',
 }
 
 export const sections = [
-  { title: 'Guides', id: 'guides' },
-  { title: 'Resources', id: 'resources' },
+  { title: 'Algorithms', id: 'algorithms' },
+  { title: 'Projects', id: 'projects' },
 ]
 
 <HeroPattern />
 
-# API Documentation
+# Mind is a maze of twisty little passages, all alike.
 
-Use the Protocol API to access contacts, conversations, group messages, and more and seamlessly integrate your product into the workflows of dozens of devoted Protocol users. {{ className: 'lead' }}
+Here you'll find everything you need to know about my mind API. You can find my projects, writeups, resources I've created, my learning, in short, a window into my mind. {{ className: 'lead' }}
 
 <div className="not-prose mt-6 mb-16 flex gap-3">
-  <Button href="/quickstart" arrow="right">
-    <>Quickstart</>
-  </Button>
-  <Button href="/sdks" variant="outline">
-    <>Explore SDKs</>
+  <Button href="/how-memory-works" arrow="right">
+    <>How memory works</>
   </Button>
 </div>
 
-## Getting started {{ anchor: false }}
+<Algorithms />
 
-To get started, create a new application in your [developer settings](#), then read about how to make requests for the resources you need to access using our HTTP APIs or dedicated client SDKs. When your integration is ready to go live, publish it to our [integrations directory](#) to reach the Protocol community. {{ className: 'lead' }}
-
-<div className="not-prose">
-  <Button href="/sdks" variant="text" arrow="right">
-    <>Get your API key</>
-  </Button>
-</div>
-
-<Guides />
-
-<Resources />
+<Projects />
