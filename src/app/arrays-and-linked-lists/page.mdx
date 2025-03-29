@@ -1,0 +1,27 @@
+import { HeroPattern } from '@/components/HeroPattern'
+import { Heading } from '@/components/Heading'
+
+export const metadata = {
+  title: '',
+  description: '',
+}
+
+export const sections = [
+  { title: 'Array', id: 'arrays', },
+  { title: 'Linked List', id: 'linked-lists', },
+]
+
+<HeroPattern />
+
+# Array and Linked lists
+
+## Array {{ id: 'arrays' }}
+
+### Terminology
+
+The elements in an array are numbered. This nubmering starts from 0, not 1.
+The position of an element is called its `index`. So instead of saying "the first element of the array", we say "the element at `index 0`".
+
+## Linked lists {{ id: 'linked-lists' }}
+
+With linked lists, your items can be anywhere in memory. Each item stores the address of the next sitem in the list. A bunch of random memory addresses are linked together. Adding an item to a linked list is easy: you stick it anywhere in memory and store the address with the previous item.
