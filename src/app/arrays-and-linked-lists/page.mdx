@@ -21,22 +21,46 @@ Sometimes you need to store a list of elements in memory. There are two common w
 
 ## Array {{ id: 'arrays' }}
 
+### What's Array in Data structure?
+
+An array is a data structure for storing more than one data item that has a similar data type.
 Using an array means all your items are stored contiguosly in memory (right next to each other).
+The details of an array are accessed about its position. This reference is called `index` or `subscript`.
 
-### Run times for common operations
-- <Heading level={4} tag='O(1)' label='Reading'></Heading>
-- <Heading level={4} tag='O(n)' label='Insertion'></Heading>
-- <Heading level={4} tag='O(n)' label='Deletion'></Heading>
+So, an array is a container of elements. Elements have a specific value and data type, like "ABC", TRUE or FALSE, etc.
 
-Arrays provide random access.
+<Note>
+    - Arrays provide random access.
+    - An index is always less than the total numbers of array items.
+    - In terms of syntax, any variable that is declared as an array can store multiple values.
+    - Almost all languages have the same comprehension of arrays but have differents ways of declaring and initializing them.
+    - Howeber, three parts will always remain common in all the initializations, i.e., array name, elements and the data type of elements.
+</Note>
+
+### Why do we need arrays?
+
+good reasons are:
+
+<p>
+- [x] Arrays are the best for storing multiple values in a single variable
+- [x] Arrays are better at processing many values easily and quickly
+- [x] Sorting and searching the values is easier in arrays
+</p>
 
 ### Pros:
+
 - You know the address for every item in your array.
 - Arrays are great if you want to read random elements.
 
 ### Cons:
 - You may not need the extras slots that you asked for, and the that memory will be wasted. You aren't using it, but no one else can use it either.
 - You may add more than 10 items yo your task list and have to move anyway.
+
+### Run times for common operations
+- <Heading level={4} tag='O(1)' label='Access'></Heading>
+- <Heading level={4} tag='O(1)' label='Reading'></Heading>
+- <Heading level={4} tag='O(n)' label='Insertion'></Heading>
+- <Heading level={4} tag='O(n)' label='Deletion'></Heading>
 
 ---
 
