@@ -1,0 +1,78 @@
+
+import { HeroPattern } from '@/components/HeroPattern'
+import { Heading } from '@/components/Heading'
+
+export const metadata = {
+  title: '',
+  description: '',
+}
+
+export const sections = [
+  { title: 'Sliding window', id: 'sliding-window', },
+]
+
+<HeroPattern />
+
+
+## Sliding window {{ id: 'sliding-window'}}
+<Heading tag='Arrays'></Heading>
+<Heading tag='Strings'></Heading>
+
+Sliding window problems involve moving a fixed or variable-size window through a data structure, typically an array or string, to solve problems efficiently based on continuous subsets of elements. This technique is used when we need to find subarrays or substrings according to a given set of conditions. {{ className: 'lead' }}
+
+### What is?
+
+Is a method used to efficiently solve problems that involve defining a window or range in the input data (arrays or strings) and the moving that window across the data to perform some operation witin the window.
+
+- This technique is commonly used in algorithms like finding subarrays with a specific sum.
+- Finding the longes substring with unique characters.
+- Solving problems that require a fixed-size window to process element efficiently.
+
+### Two types of sliding window:
+
+The general steps to solve these questions by following below steps:
+
+### 1. Fixed size sliding window:
+
+- 1. Find the size of the window required.
+- 2. Compute the result for 1st window, i.e include the first K elements fo the data structure.
+- 3. Then use a loop to slide the window by 1 and keep computing the result window by window.
+
+### 2. Variable size sliding window:
+
+- 1. In this type of sliding windows problem, ww omcrease pir right pointer one by one till our condition is true.
+- 2. At any step if our condition does not match, we shrink the size of our window by increasing left pointer.
+- 3. Again, when our condition satisfies, we start increasing the right pointer and follow step 1.
+- 4. We follow these steps until we reach to the end of the array.
+
+<Note>
+    ### How to identify sliding window problem
+    - These problems generally require finding maximum/minimum subarray, substrings which satisfy some specific condition.
+    - The size of the subarray or substring `k` will be given in some of problems.
+    - These problems can easily be solven in O(n<sup>2</sup>) time complexity using nested loops, usign sliding window we can solve these in O(n) time complexity.
+    - Required time complexity: O(n) or O (n * log(n)).
+    - Contraints: N \<= 10<sup>6</sup>, if N is the size of the array/string.
+</Note>
+
+<Heading label='Exercise'></Heading>
+## Longest substring without repeating characters
+
+Given a string `s`, find the lenght of the longest substring without duplicate characters.
+
+```python {{ title: 'Python3' }}
+def lengthOfLongestSubstring(self, s: str) -> int:
+    if (len(s)) == len(s):
+        return (s)
+    substring = ''
+    max_length = 1
+    for i in s:
+        if i not in substring:
+            substring = substring + i
+            max_length = max(max_length, len(substring))
+        else:
+            substring = substring.split(i)[1] + i
+    return max_length
+```
+
+
+---

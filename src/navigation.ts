@@ -20,6 +20,7 @@ export const navigation: Array<NavGroup> = [
     links: [
       { title: 'How memory works', href: '/how-memory-works' },
       { title: 'Arrays and Linked lists', href: '/arrays-and-linked-lists' },
+      { title: 'Techniques', href: '/techniques' },
     ],
   },
   {
