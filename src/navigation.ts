@@ -26,6 +26,7 @@ export const navigation: Array<NavGroup> = [
   {
     title: 'Hacking',
     links: [
+      { title: 'Fundamental IT skills', href: '/fundamental-it-skills' },
       { title: 'Scripts', href: '/scripts' },
       { title: 'Tools', href: '/tools' },
     ],
